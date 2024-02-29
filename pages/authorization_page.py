@@ -5,7 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from base.password import get_password
-from base.testing_settings import testing_stand, url_after_authorization
+from base.testing_settings import Url
 from base.base_class import Base
 
 
@@ -14,9 +14,8 @@ class AuthorizationPage(Base):
         super().__init__(driver)
         self.driver = driver
         self.action = ActionChains(driver)
-        self.url = testing_stand
         self.password = get_password()
-        self.url_after_authorization = url_after_authorization
+        self.url = Url()
 
     # Locators
     input_login = '//input[@type="text"]'
@@ -49,12 +48,12 @@ class AuthorizationPage(Base):
     # Methods
 
     def authorization(self):
-        self.driver.get(self.url)
+        self.driver.get(self.url.testing_stand)
         self.driver.maximize_window()
         self.get_current_url()
         self.send_input_login('sysadmin')
         self.send_input_password(self.password)
         self.click_button_login()
         time.sleep(1)
-        self.assert_url(url_after_authorization)
-        self.get_current_url()
+        self.assert_url(self.url.url_after_authorization)
+

@@ -5,8 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
 from pages.authorization_page import AuthorizationPage
-
-
+from pages.main_page import MainPage
 
 
 def test_open_spo_page(set_up):
@@ -22,3 +21,5 @@ def test_open_spo_page(set_up):
     ap.authorization()
     time.sleep(2)
 
+    mp = MainPage(driver)
+    mp.open_page_study_plans()
