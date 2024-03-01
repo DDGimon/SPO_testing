@@ -1,4 +1,6 @@
 import time
+
+import allure
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -41,9 +43,10 @@ class MainPage(Base):
 
     # Открытие страницы учебного плана
     def open_page_study_plans(self):
-        Logger.add_start_step(method='open_page_study_plans')
-        self.get_current_url()
-        self.click_button_arm_head()
-        self.click_button_study_plan()
-        self.assert_url(self.urls.url_study_plan)
-        Logger.add_end_step(url=self.driver.current_url, method='open_page_study_plans')
+        with allure.step('Переход на страницу "Учебный план"'):
+            Logger.add_start_step(method='open_page_study_plans')
+            self.get_current_url()
+            self.click_button_arm_head()
+            self.click_button_study_plan()
+            self.assert_url(self.urls.url_study_plan)
+            Logger.add_end_step(url=self.driver.current_url, method='open_page_study_plans')

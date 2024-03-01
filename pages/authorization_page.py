@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import allure
 from base.password import get_password
 from base.testing_settings import Url
 from base.base_class import Base
@@ -49,15 +49,15 @@ class AuthorizationPage(Base):
     # Methods
 
     def authorization(self):
-
-        Logger.add_start_step(method='authorization')
-        self.driver.get(self.url.testing_stand)
-        self.driver.maximize_window()
-        self.get_current_url()
-        self.send_input_login('sysadmin')
-        self.send_input_password(self.password)
-        self.click_button_login()
-        time.sleep(1)
-        self.assert_url(self.url.url_after_authorization)
-        Logger.add_end_step(url=self.driver.current_url, method='authorization')
+        with allure.step('Авторизация на сайте'):
+            Logger.add_start_step(method='authorization')
+            self.driver.get(self.url.testing_stand)
+            self.driver.maximize_window()
+            self.get_current_url()
+            self.send_input_login('sysadmin')
+            self.send_input_password(self.password)
+            self.click_button_login()
+            time.sleep(1)
+            self.assert_url(self.url.url_after_authorization)
+            Logger.add_end_step(url=self.driver.current_url, method='authorization')
 

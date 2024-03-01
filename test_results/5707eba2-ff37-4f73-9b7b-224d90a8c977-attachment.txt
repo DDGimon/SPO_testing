@@ -1,0 +1,17 @@
+
+ !!!!Start test!!!!
+Current url https://ntptis.t12.test.eljur.tech/authorize
+Input login
+Input password
+Click button login
+Good value URL
+Current url https://ntptis.t12.test.eljur.tech/?user=sysadmin&domain=ntptis
+Click button arm head
+Click button study plan
+Good value URL
+Current url https://ntptis.t12.test.eljur.tech/journal-study-action/s.plan/p.spo
+Click button arm head
+Click button study plan
+Good value URL
+
+ !!!!Finish test!!!!
