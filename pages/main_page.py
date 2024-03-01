@@ -22,6 +22,7 @@ class MainPage(Base):
     # Locators
     button_arm_head = '//div[@class="menu0"]/a[3]'
     button_study_plan = '//div[@class="selection"]/a'
+    button_add_plan = '//a[@class="button button--blue button--medium"]'
 
     # Getters
     def get_button_arm_head(self):
@@ -29,6 +30,9 @@ class MainPage(Base):
 
     def get_button_study_plan(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_study_plan)))
+
+    def get_button_add_plan(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_add_plan)))
 
     # Actions
     def click_button_arm_head(self):
@@ -38,6 +42,10 @@ class MainPage(Base):
     def click_button_study_plan(self):
         self.get_button_study_plan().click()
         print('Click button study plan')
+
+    def click_button_add_plan(self):
+        self.get_button_add_plan().click()
+        print('Click button add plan')
 
     # Methods:
 
@@ -50,3 +58,12 @@ class MainPage(Base):
             self.click_button_study_plan()
             self.assert_url(self.urls.url_study_plan)
             Logger.add_end_step(url=self.driver.current_url, method='open_page_study_plans')
+
+    # Открытие страницы создания учебного плана
+    def open_page_add_plan(self):
+        with allure.step('Переход на страницу создания "Учебного плана"'):
+            Logger.add_start_step(method='open_page_add_plan')
+            self.click_button_add_plan()
+            self.get_current_url()
+            self.assert_url(self.urls.url_add_plan)
+            Logger.add_end_step(url=self.driver.current_url, method='open_page_add_plan')
