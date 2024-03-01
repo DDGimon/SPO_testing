@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from base.password import get_password
 from base.testing_settings import Url
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class AuthorizationPage(Base):
@@ -48,6 +49,8 @@ class AuthorizationPage(Base):
     # Methods
 
     def authorization(self):
+
+        Logger.add_start_step(method='authorization')
         self.driver.get(self.url.testing_stand)
         self.driver.maximize_window()
         self.get_current_url()
@@ -56,4 +59,5 @@ class AuthorizationPage(Base):
         self.click_button_login()
         time.sleep(1)
         self.assert_url(self.url.url_after_authorization)
+        Logger.add_end_step(url=self.driver.current_url, method='authorization')
 

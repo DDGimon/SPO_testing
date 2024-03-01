@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from base.testing_settings import Url
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class MainPage(Base):
@@ -40,7 +41,9 @@ class MainPage(Base):
 
     # Открытие страницы учебного плана
     def open_page_study_plans(self):
+        Logger.add_start_step(method='open_page_study_plans')
         self.get_current_url()
         self.click_button_arm_head()
         self.click_button_study_plan()
         self.assert_url(self.urls.url_study_plan)
+        Logger.add_end_step(url=self.driver.current_url, method='open_page_study_plans')
