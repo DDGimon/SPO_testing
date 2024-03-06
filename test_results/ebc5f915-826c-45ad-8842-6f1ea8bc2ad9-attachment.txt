@@ -1,5 +1,0 @@
-
- !!!!Start test!!!!
-Current url https://ntptis.t12.test.eljur.tech/authorize
-
- !!!!Finish test!!!!
