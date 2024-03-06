@@ -5,7 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import allure
 from base.password import get_password
-from base.testing_settings import Url
+from base.variables import Url , Variables
 from base.base_class import Base
 from utilities.logger import Logger
 from utilities.utilities import driver
@@ -15,6 +15,7 @@ class AuthorizationPage(Base):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.variables = Variables()
         self.action = ActionChains(driver)
         self.password = get_password()
         self.url = Url()
@@ -55,7 +56,7 @@ class AuthorizationPage(Base):
             self.driver.get(self.url.testing_stand)
             self.driver.maximize_window()
             self.get_current_url()
-            self.send_input_login('sysadmin')
+            self.send_input_login(self.variables.login)
             self.send_input_password(self.password)
             self.click_button_login()
             time.sleep(1)

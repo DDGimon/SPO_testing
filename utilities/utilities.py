@@ -27,4 +27,7 @@ def driver():
     # driver_chrom.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"Authorization": "Basic " + auth}})
     #
     yield driver_chrome
-    driver_chrome.quit()
+
+
+
+

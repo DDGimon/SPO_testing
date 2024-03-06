@@ -1,7 +1,8 @@
 import datetime
 from utilities.utilities import driver
 
-class Base:
+
+class Base():
 
     def __init__(self, driver):
         self.driver = driver
@@ -24,7 +25,8 @@ class Base:
     def get_screenshot(self):
         now_date = datetime.datetime.today().strftime("%Y.%m.%d.%H.%M.%S")
         name_screenshot = 'screenshot' + now_date + '.png'
-        self.driver.save_screenshot('C:\\Users\\Tester\\PycharmProjectsTest\\pythonProject1\\screens\\' + name_screenshot)
+        self.driver.save_screenshot(
+            'C:\\Users\\Tester\\PycharmProjectsTest\\pythonProject1\\screens\\' + name_screenshot)
 
     """Method assert URL"""
 

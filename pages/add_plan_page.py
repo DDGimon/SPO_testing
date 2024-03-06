@@ -7,17 +7,18 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utilities.utilities import driver
 
-from base.testing_settings import Url
+from base.variables import Url, Variables
 from base.base_class import Base
 from utilities.logger import Logger
 
 
-class MainPage(Base):
+class AddPlanPage(Base):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
         self.action = ActionChains(driver)
         self.urls = Url()
+        self.variables = Variables()
 
     # TODO: Добавить рандомный выбор из нескольких вариантов специальностей через random
 
@@ -26,23 +27,23 @@ class MainPage(Base):
     profession_5 = '//div[@class="ej-select__scroll"]/div[5]'
     input_name_plan = '//input[@placeholder="Введите название"]'
     calendar_start_plan = '//div[@class="ej-datepicker__value"]'
-    button_full_time = '//*[@id="content"]/div/div[2]/div/div[1]/div[4]/div/div/button[1]'
-    button_part_time = '//*[@id="content"]/div/div[2]/div/div[1]/div[4]/div/div/button[2]'
-    button_distant = '//*[@id="content"]/div/div[2]/div/div[1]/div[4]/div/div/button[3]'
+    button_full_time = '//button[@class="button button--white button--medium button--outline yDeRVFxEkXicCbHastxK"][1]'
+    button_part_time = '//button[@class="button button--white button--medium button--outline yDeRVFxEkXicCbHastxK"][2]'
+    button_distant = '//button[@class="button button--white button--medium button--outline yDeRVFxEkXicCbHastxK"][3]'
     select_start_year = '//div[@class="ej-form-group ej-form-group--3"][1]/div/div'
-    start_year_2018 = '//div[@class="ej-form-group ej-form-group--3"][1]/div/div/div[2]/div/div/div[5]'
+    start_year_2018 = '//div[@class="ej-form-group ej-form-group--3"][1]/div/div/div/div/div/div[5]'
     select_count_year = '//div[@class="ej-form-group ej-form-group--3"][2]/div/div'
-    count_year_5 = '//div[@class="ej-form-group ej-form-group--3"][2]/div/div/div[2]/div/div/div[5]'
+    count_year_5 = '//div[@class="ej-form-group ej-form-group--3"][2]/div/div/div/div/div/div/div[5]'
     select_count_month = '//div[@class="ej-form-group ej-form-group--3"][3]/div/div'
-    count_month_5 = '//div[@class="ej-form-group ej-form-group--3"][3]/div/div/div[2]/div/div/div[5]'
+    count_month_5 = '//div[@class="ej-form-group ej-form-group--3"][3]/div/div/div/div/div/div/div[5]'
     select_program = '//div[@class="ej-form-group ej-form-group--6"][1]/div/div'
-    general_education = '//div[@class="ej-form-group ej-form-group--6"][1]/div/div/div/div/div/div[1]'
-    secondary_education = '//div[@class="ej-form-group ej-form-group--6"][2]/div/div/div/div/div/div[1]'
+    general_education = '//div[@class="ej-form-group ej-form-group--6"][1]/div/div/div[2]/div/div/div[1]'
+    secondary_education = '//div[@class="ej-form-group ej-form-group--6"][1]/div/div/div[2]/div/div/div[2]'
     select_study_level = '//div[@class="ej-form-group ej-form-group--6"][2]/div/div'
     basic_study = '//div[@class="ej-form-group ej-form-group--6"][2]/div/div/div/div/div/div[1]'
     advanced_study = '//div[@class="ej-form-group ej-form-group--6"][2]/div/div/div/div/div/div[2]'
-    select_qualification = '//div[@class="ej-form-group ej-form-group--12"][3]/div/div/div/div/'
-    qualification = '//div[@class="ej-form-group ej-form-group--12"][3]/div/div/div/div/div/div[5]'
+    select_qualification = '//div[@class="ej-form-group ej-form-group--12"][4]/div/div'
+    qualification = '//div[@class="ej-form-group ej-form-group--12"][4]/div/div/div[2]/div/div/div[5]'
     button_save = '//button[@class="button button--blue button--medium button--fill"]'
 
     # Getters
@@ -113,15 +114,102 @@ class MainPage(Base):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_save)))
 
     # Actions
-    def click_button_arm_head(self):
-        self.get_button_arm_head().click()
-        print('Click button arm head')
+    def click_select_profession(self):
+        self.get_select_profession().click()
+        print('Click select profession')
+
+    def click_profession_5(self):
+        self.get_profession_5().click()
+        print('Click profession')
+
+    def send_name_plan(self, text):
+        self.get_input_name_plan().send_keys(text)
+        print('Send name plan')
+
+    def move_to_select_coffee(self):
+        self.action.move_to_element(self.get_button_save()).perform()
+        print('Move to save button ')
+
+    def click_button_full_time(self):
+        self.get_button_full_time().click()
+        print('Click button full time')
+
+    def click_select_start_year(self):
+        self.get_select_start_year().click()
+        print('Click select start year')
+
+    def click_start_year_2018(self):
+        self.get_start_year_2018().click()
+        print('Click start year 2018')
+
+    def click_select_count_year(self):
+        self.get_select_count_year().click()
+        print('Click select count year')
+
+    def click_count_year_5(self):
+        self.get_count_year_5().click()
+        print('Click count year 5')
+
+    def click_select_count_month(self):
+        self.get_select_count_month().click()
+        print('Click select count month')
+
+    def click_count_month_5(self):
+        self.get_count_month_5().click()
+        print('Click count month 5')
+
+    def click_select_program(self):
+        self.get_select_program().click()
+        print('Click select program')
+
+    def click_secondary_education(self):
+        self.get_secondary_education().click()
+        print('Click secondary_education')
+
+    def click_select_study_level(self):
+        self.get_select_study_level().click()
+        print('Click select study level')
+
+    def click_basic_study(self):
+        self.get_basic_study().click()
+        print('Click basic study')
+
+    def click_select_qualification(self):
+        self.get_select_qualification().click()
+        print('Click select qualification')
+
+    def click_qualification(self):
+        self.get_qualification().click()
+        print('Click qualification')
+
+    def click_button_save(self):
+        self.get_button_save().click()
+        print('Click button save')
 
     # Methods:
 
+    # Создание учебного плана
+    def add_study_plan(self):
+        with allure.step('Создание учебного плана"'):
+            Logger.add_start_step(method='add_study_plan')
+            self.click_select_profession()
+            self.click_profession_5()
+            self.send_name_plan(self.variables.spo_name)
+            self.move_to_select_coffee()
+            self.click_button_full_time()
+            self.click_select_start_year()
+            self.click_start_year_2018()
+            self.click_select_count_year()
+            self.click_count_year_5()
+            self.click_select_count_month()
+            self.click_count_month_5()
+            self.click_select_program()
+            self.click_secondary_education()
+            self.click_select_study_level()
+            self.click_basic_study()
+            self.click_select_qualification()
+            self.click_qualification()
+            self.click_button_save()
+            Logger.add_end_step(url=self.driver.current_url, method='add_study_plan')
+
     # Открытие страницы учебного плана
-    def open_page_study_plans(self):
-        with allure.step('Переход на страницу "Учебный план"'):
-            Logger.add_start_step(method='open_page_study_plans')
-            self.assert_url(self.urls.url_add_plan)
-            Logger.add_end_step(url=self.driver.current_url, method='open_page_study_plans')

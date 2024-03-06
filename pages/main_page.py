@@ -7,7 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utilities.utilities import driver
 
-from base.testing_settings import Url
+from base.variables import Url
 from base.base_class import Base
 from utilities.logger import Logger
 
