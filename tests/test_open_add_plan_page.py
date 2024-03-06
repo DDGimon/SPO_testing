@@ -4,20 +4,13 @@ import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-
+from utilities.utilities import driver
 from pages.authorization_page import AuthorizationPage
 from pages.main_page import MainPage
 
 
 @allure.description('Переход на страницу добавления учебного плана')
-def test_open_add_spo_page(set_up):
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
-    g = Service()
-    driver = webdriver.Chrome(options=options, service=g)
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--ignore-ssl-errors')
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+def test_open_add_spo_page(set_up, driver):
 
     ap = AuthorizationPage(driver)
     ap.authorization()

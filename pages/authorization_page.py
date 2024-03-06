@@ -8,6 +8,7 @@ from base.password import get_password
 from base.testing_settings import Url
 from base.base_class import Base
 from utilities.logger import Logger
+from utilities.utilities import driver
 
 
 class AuthorizationPage(Base):

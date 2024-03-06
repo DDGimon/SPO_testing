@@ -5,7 +5,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from utilities.utilities import driver
 
 from base.testing_settings import Url
 from base.base_class import Base
@@ -19,8 +19,7 @@ class MainPage(Base):
         self.action = ActionChains(driver)
         self.urls = Url()
 
-
-#TODO: Добавить рандомный выбор из нескольких вариантов специальностей через random
+    # TODO: Добавить рандомный выбор из нескольких вариантов специальностей через random
 
     # Locators
     select_profession = '//div[@class="ej-select ej-select--fill"]'
@@ -40,24 +39,83 @@ class MainPage(Base):
     general_education = '//div[@class="ej-form-group ej-form-group--6"][1]/div/div/div/div/div/div[1]'
     secondary_education = '//div[@class="ej-form-group ej-form-group--6"][2]/div/div/div/div/div/div[1]'
     select_study_level = '//div[@class="ej-form-group ej-form-group--6"][2]/div/div'
-    basic_study = ''
-    advanced_study = ''
-
-
-    select_qualification = ''
+    basic_study = '//div[@class="ej-form-group ej-form-group--6"][2]/div/div/div/div/div/div[1]'
+    advanced_study = '//div[@class="ej-form-group ej-form-group--6"][2]/div/div/div/div/div/div[2]'
+    select_qualification = '//div[@class="ej-form-group ej-form-group--12"][3]/div/div/div/div/'
+    qualification = '//div[@class="ej-form-group ej-form-group--12"][3]/div/div/div/div/div/div[5]'
     button_save = '//button[@class="button button--blue button--medium button--fill"]'
 
     # Getters
-    def get_button_arm_head(self):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_arm_head)))
+    def get_select_profession(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.select_profession)))
 
+    def get_profession_5(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.profession_5)))
 
+    def get_input_name_plan(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.input_name_plan)))
+
+    def get_calendar_start_plan(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.calendar_start_plan)))
+
+    def get_button_full_time(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_full_time)))
+
+    def get_button_part_time(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_part_time)))
+
+    def get_button_distant(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_distant)))
+
+    def get_select_start_year(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.select_start_year)))
+
+    def get_start_year_2018(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.start_year_2018)))
+
+    def get_select_count_year(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.select_count_year)))
+
+    def get_count_year_5(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.count_year_5)))
+
+    def get_select_count_month(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.select_count_month)))
+
+    def get_count_month_5(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.count_month_5)))
+
+    def get_select_program(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.select_program)))
+
+    def get_secondary_education(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.secondary_education)))
+
+    def get_general_education(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.general_education)))
+
+    def get_select_study_level(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.select_study_level)))
+
+    def get_basic_study(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.basic_study)))
+
+    def get_advanced_study(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.advanced_study)))
+
+    def get_select_qualification(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.select_qualification)))
+
+    def get_qualification(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.qualification)))
+
+    def get_button_save(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_save)))
 
     # Actions
     def click_button_arm_head(self):
         self.get_button_arm_head().click()
         print('Click button arm head')
-
 
     # Methods:
 
@@ -67,6 +125,3 @@ class MainPage(Base):
             Logger.add_start_step(method='open_page_study_plans')
             self.assert_url(self.urls.url_add_plan)
             Logger.add_end_step(url=self.driver.current_url, method='open_page_study_plans')
-
-
-
