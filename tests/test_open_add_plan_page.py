@@ -19,4 +19,5 @@ def test_open_add_spo_page(set_up, driver):
     mp = MainPage(driver)
     mp.open_page_study_plans()
     mp.open_page_add_plan()
+    mp.receive_form_study_data()
 
