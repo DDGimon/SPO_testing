@@ -11,7 +11,3 @@ class Url:
     url_add_plan = 'https://ntptis.t12.test.eljur.tech/journal-study-action/s.plan/p.spo/t.title?action=create'
 
 
-class Variables:
-    login = 'Sysadmin'
-    spo_name = 'Тестовое название плана'
-

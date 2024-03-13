@@ -1,3 +1,2 @@
 *.log
-test_results/
-screenns/
+base/password.py

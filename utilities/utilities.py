@@ -10,8 +10,8 @@ from selenium.webdriver.chrome.service import Service
 
 @pytest.fixture
 def driver():
-
     '''Отключаем лишнее логирование'''
+
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     g = Service()
@@ -25,9 +25,19 @@ def driver():
     # auth = base64.b64encode(b'eljur:kvmpei222').decode()
     # driver_chrom.execute_cdp_cmd("Network.enable", {})
     # driver_chrom.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"Authorization": "Basic " + auth}})
-    #
+
     yield driver_chrome
 
 
 
+@pytest.fixture(scope="session")
+def spo_info():
+    return {
+        'login': 'sysadmin',
+        'form_data': None,
+        'name_plan': 'Тестовое название плана',
+        'study_level': None,
+        'education_program': None,
+        'profession': None
 
+    }

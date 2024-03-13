@@ -5,7 +5,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from utilities.utilities import driver
+from utilities.utilities import driver, spo_info
 
 from base.variables import Url
 from base.base_class import Base
@@ -13,12 +13,12 @@ from utilities.logger import Logger
 
 
 class MainPage(Base):
-    def __init__(self, driver,):
+    def __init__(self, driver, spo_info):
         super().__init__(driver)
+        self.spo_info = spo_info
         self.driver = driver
         self.action = ActionChains(driver)
         self.urls = Url()
-        self.plans_info = plans_info
 
     # Locators
     button_arm_head = '//div[@class="menu0"]/a[3]'
@@ -26,10 +26,9 @@ class MainPage(Base):
     button_add_plan = '//a[@class="button button--blue button--medium"]'
     form_study_data = '//p[@class="ej-text ej-text--var-heading-2 ej-text--align-left"]'
     profession_study_data = '//p[@class="ej-text ej-text--var-heading-3 ej-text--align-left"]'
-    study_data = '//p[@class="ej-text ej-text--var-body-2 ej-text--color-secondary ej-text--align-left"]'
+    study_level_data = '//p[@class="ej-text ej-text--var-body-2 ej-text--color-secondary ej-text--align-left"]'
     name_plan_data = '//div[@class="N7deZqyBsqTNJw2HUOc6 YPvbZ42QRQEWFeQ1H6Qr"]/div[2]/div/div/div/span/a'
-
-
+    education_program = '//span[@class="ej-chip ej-chip--size-medium ej-chip--effect-light ej-chip--color-blue"]'
 
     # Getters
     def get_button_arm_head(self):
@@ -47,13 +46,14 @@ class MainPage(Base):
     def get_profession_study_data(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.profession_study_data)))
 
-    def get_study_data(self):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.study_data)))
+    def get_study_level_data(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.study_level_data)))
 
     def get_name_plan_data(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.name_plan_data)))
 
-
+    def get_education_program(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.education_program)))
 
     # Actions
     def click_button_arm_head(self):
@@ -68,8 +68,22 @@ class MainPage(Base):
         self.get_button_add_plan().click()
         print('Click button add plan')
 
+        # Возврат значений плана на главной странице
+
     def receive_form_study_data(self):
         return self.get_form_study_data().text
+
+    def receive_profession_study_data(self):
+        return self.get_profession_study_data().text
+
+    def receive_name_plan_data(self):
+        return self.get_name_plan_data().text
+
+    def receive_education_program_data(self):
+        return self.get_education_program().text
+
+    def receive_study_level_data(self):
+        return self.get_study_level_data().text
 
     # Methods:
 
@@ -94,6 +108,30 @@ class MainPage(Base):
 
     # Проверка данных после создание учебного плана
 
-
     def check_plans_data(self):
-        a = self.receive_form_study_data()
+        expected_form_study = self.receive_form_study_data()
+        actual_form_study = self.spo_info['form_data']
+        assert expected_form_study == actual_form_study
+        print('Форма обучения совпадает')
+
+        expected_profession_study = self.receive_profession_study_data()
+        actual_profession_study = self.spo_info['profession']
+        assert expected_profession_study == actual_profession_study
+        print('Проффесия обучения совпадает')
+
+        expected_education_program = self.receive_education_program_data()
+        actual_education_program = self.spo_info['education_program']
+        assert expected_education_program == actual_education_program
+        print('Необходимый уровень образования совпадает')
+
+        expected_name_plan = self.receive_name_plan_data()
+        actual_name_plan = self.spo_info['name_plan']
+        print(expected_name_plan)
+        print(actual_name_plan)
+        assert expected_name_plan == actual_name_plan
+        print('Название плана совпадает')
+
+        expected_study_level = self.receive_study_level_data().replace('#', '')
+        actual_study_level = self.spo_info['study_level']
+        assert expected_study_level == actual_study_level
+        print('Программа подготовки совпадает')
