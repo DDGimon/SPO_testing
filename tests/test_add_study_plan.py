@@ -15,7 +15,7 @@ from pages.main_page import MainPage
 def test_add_spo_page(set_up, driver, spo_info):
 
     ap = AuthorizationPage(driver, spo_info)
-    ap.authorization()
+    ap.authorization_with_cookies()
     time.sleep(2)
 
     mp = MainPage(driver, spo_info)

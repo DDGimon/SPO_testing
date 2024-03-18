@@ -1,2 +1,4 @@
 *.log
 base/password.py
+/.idea
+cookies

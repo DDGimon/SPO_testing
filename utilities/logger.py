@@ -3,7 +3,7 @@ import os
 
 
 class Logger():
-    file_name = f"C:\\Users\\Tester\\SPO_testing\\SPO_testing\\logs\\log_" + str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
+    file_name = f"D:\\SPO_autotest\\SPO_test\\logs\\log_" + str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
 
     @classmethod
     def write_log_to_file(cls, data: str):
