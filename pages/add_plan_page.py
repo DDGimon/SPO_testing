@@ -230,7 +230,7 @@ class AddPlanPage(Base):
 
     # Создание учебного плана
     def add_study_plan(self):
-        with allure.step('Создание учебного плана"'):
+        with allure.step('Создание "учебного плана"'):
             Logger.add_start_step(method='add_study_plan')
             self.click_select_profession()
             self.click_profession_5()
@@ -254,6 +254,7 @@ class AddPlanPage(Base):
             self.click_select_qualification()
             self.click_qualification()
             self.click_button_save()
+            self.assert_url(self.urls.url_study_plan)
 
             Logger.add_end_step(url=self.driver.current_url, method='add_study_plan')
 

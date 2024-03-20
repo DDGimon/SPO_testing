@@ -109,29 +109,30 @@ class MainPage(Base):
     # Проверка данных после создание учебного плана
 
     def check_plans_data(self):
-        expected_form_study = self.receive_form_study_data()
-        actual_form_study = self.spo_info['form_data']
-        assert expected_form_study == actual_form_study
-        print('Форма обучения совпадает')
+        with allure.step('Проверка веденных данных'):
+            expected_form_study = self.receive_form_study_data()
+            actual_form_study = self.spo_info['form_data']
+            assert expected_form_study == actual_form_study
+            print('Форма обучения совпадает')
 
-        expected_profession_study = self.receive_profession_study_data()
-        actual_profession_study = self.spo_info['profession']
-        assert expected_profession_study == actual_profession_study
-        print('Проффесия обучения совпадает')
+            expected_profession_study = self.receive_profession_study_data()
+            actual_profession_study = self.spo_info['profession']
+            assert expected_profession_study == actual_profession_study
+            print('Проффесия обучения совпадает')
 
-        expected_education_program = self.receive_education_program_data()
-        actual_education_program = self.spo_info['education_program']
-        assert expected_education_program == actual_education_program
-        print('Необходимый уровень образования совпадает')
+            expected_education_program = self.receive_education_program_data()
+            actual_education_program = self.spo_info['education_program']
+            assert expected_education_program == actual_education_program
+            print('Необходимый уровень образования совпадает')
 
-        expected_name_plan = self.receive_name_plan_data()
-        actual_name_plan = self.spo_info['name_plan']
-        print(expected_name_plan)
-        print(actual_name_plan)
-        assert expected_name_plan == actual_name_plan
-        print('Название плана совпадает')
+            expected_name_plan = self.receive_name_plan_data()
+            actual_name_plan = self.spo_info['name_plan']
+            print(expected_name_plan)
+            print(actual_name_plan)
+            assert expected_name_plan == actual_name_plan
+            print('Название плана совпадает')
 
-        expected_study_level = self.receive_study_level_data().replace('#', '')
-        actual_study_level = self.spo_info['study_level']
-        assert expected_study_level == actual_study_level
-        print('Программа подготовки совпадает')
+            expected_study_level = self.receive_study_level_data().replace('#', '')
+            actual_study_level = self.spo_info['study_level']
+            assert expected_study_level == actual_study_level
+            print('Программа подготовки совпадает')

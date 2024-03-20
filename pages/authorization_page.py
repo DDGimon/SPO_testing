@@ -21,7 +21,7 @@ class AuthorizationPage(Base):
         self.password = get_password()
         self.url = Url()
         self.spo_info = spo_info
-        self.cookies = pickle.load(open('D:\\SPO_autotest\\SPO_test\\cookies\\cookies.pkl', "rb"))
+        self.cookies = pickle.load(open('C:\\Users\\Tester\\SPO_testing\\SPO_test\\cookies\\cookies.pkl', "rb"))
 
     # Locators
     input_login = '//input[@type="text"]'
@@ -64,7 +64,7 @@ class AuthorizationPage(Base):
             self.click_button_login()
             time.sleep(1)
             self.assert_url(self.url.url_after_authorization)
-            # self.pickle.dump(self.driver.get_cookies(), open('D:\\SPO_autotest\\S\PO_test\\cookies\\cookies.pkl', "wb"))
+            self.pickle.dump(self.driver.get_cookies(), open('C:\\Users\\Tester\\SPO_testing\\SPO_test\\cookies\\cookies.pkl', "wb"))
             Logger.add_end_step(url=self.driver.current_url, method='authorization')
 
     def authorization_with_cookies(self):

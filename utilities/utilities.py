@@ -14,14 +14,16 @@ def driver():
 
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
+    options.add_argument('--window-size=1980,1024')
+    options.add_argument('--headless')
     g = Service()
     driver_chrome = webdriver.Chrome(options=options, service=g)
 
-    '''Обход авторизации из дома'''
-
-    auth = base64.b64encode(b'eljur:kvmpei222').decode()
-    driver_chrome.execute_cdp_cmd("Network.enable", {})
-    driver_chrome.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"Authorization": "Basic " + auth}})
+    # '''Обход авторизации из дома'''
+    #
+    # auth = base64.b64encode(b'eljur:kvmpei222').decode()
+    # driver_chrome.execute_cdp_cmd("Network.enable", {})
+    # driver_chrome.execute_cdp_cmd("Network.setExtraHTTPHeaders", {"headers": {"Authorization": "Basic " + auth}})
 
     yield driver_chrome
 

@@ -1,4 +1,9 @@
 *.log
-base/password.py
+/base/password.py
 /.idea
-cookies
+/cookies
+/report
+.pytest_cache
+*.iml
+/.env
+/allure-results
